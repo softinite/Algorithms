@@ -38,3 +38,13 @@ public class MinimumDraws {
 
     }
 }
+
+/**
+ * PROOF:
+ * The Peigeonhole principle can be used here.
+ * In this case, it can be noticed that m = N and we're trying to find the smallest n, which would match n = m * k + 1
+ * It can be noticed that the smallest n, will be determined by the least positive k, which means k = 1 and n = m+ 1.
+ *
+ * Conclusion: in the worst scenario, Jim will have to pull m (where m = N) uniques socks and the m + 1 will inevitable match
+ * one of the existing draw.
+ */
