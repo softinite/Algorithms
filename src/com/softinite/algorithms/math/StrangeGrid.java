@@ -1,4 +1,4 @@
-package com.softinite.algorithms;
+package com.softinite.algorithms.math;
 
 import java.util.Scanner;
 
