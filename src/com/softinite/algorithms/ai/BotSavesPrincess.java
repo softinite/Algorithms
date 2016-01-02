@@ -1,5 +1,10 @@
 package com.softinite.algorithms.ai;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+import java.util.stream.IntStream;
+
 /**
  * Created by sivasenco on 2016-01-01.
  *
@@ -47,4 +52,40 @@ package com.softinite.algorithms.ai;
  *
  */
 public class BotSavesPrincess {
+
+    public static final String PRINCESS = "p";
+    public static final String MOVE_UP = "UP";
+    public static final String MOVE_DOWN = "DOWN";
+    public static final String MOVE_LEFT = "LEFT";
+    public static final String MOVE_RIGHT = "RIGHT";
+
+    public static void displayPathtoPrincess(Integer n, List<String> grid) {
+        String firstRow = grid.get(0);
+        String lastRow = grid.get(n - 1);
+        if (firstRow.startsWith(PRINCESS)) {
+            IntStream.range(0, n/2).forEach(i -> System.out.println(MOVE_UP));
+            IntStream.range(0, n/2).forEach(i -> System.out.println(MOVE_LEFT));
+        } else if (firstRow.endsWith(PRINCESS)) {
+            IntStream.range(0, n/2).forEach(i -> System.out.println(MOVE_UP));
+            IntStream.range(0, n/2).forEach(i -> System.out.println(MOVE_RIGHT));
+        } else if (lastRow.startsWith(PRINCESS)) {
+            IntStream.range(0, n/2).forEach(i -> System.out.println(MOVE_DOWN));
+            IntStream.range(0, n/2).forEach(i -> System.out.println(MOVE_LEFT));
+        } else if (lastRow.endsWith(PRINCESS)) {
+            IntStream.range(0, n/2).forEach(i -> System.out.println(MOVE_DOWN));
+            IntStream.range(0, n/2).forEach(i -> System.out.println(MOVE_RIGHT));
+        }
+
+    }
+
+    public static void main(String[] args) {
+        Scanner console = new Scanner(System.in);
+        Integer n = Integer.valueOf(console.nextLine());
+
+        List<String> grid = new ArrayList<>();
+        IntStream.range(0, n).forEach(i -> grid.add(console.nextLine()));
+
+        displayPathtoPrincess(n, grid);
+    }
+
 }
