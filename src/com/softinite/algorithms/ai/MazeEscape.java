@@ -105,24 +105,24 @@ import java.util.Scanner;
  */
 public class MazeEscape {
 
-    static void nextMove(int n, int r, int c, String [] grid) {
+    public static final int N = 3;
+
+    static void nextMove(String [] grid) {
+        System.out.println("DOWN");
     }
 
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        int n,r,c;
-        n = in.nextInt();
-        r = in.nextInt();
-        c = in.nextInt();
-        in.useDelimiter("\n");
-        String grid[] = new String[n];
+        Scanner console = new Scanner(System.in);
 
+        console.nextLine();
 
-        for(int i = 0; i < n; i++) {
-            grid[i] = in.next();
+        String grid[] = new String[N];
+
+        for(int i = 0; i < N; i++) {
+            grid[i] = console.nextLine();
         }
 
-        nextMove(n,r,c,grid);
+        nextMove(grid);
 
     }
 
