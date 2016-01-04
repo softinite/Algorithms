@@ -1,9 +1,6 @@
 package com.softinite.algorithms.ai;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
-import java.util.stream.IntStream;
 
 /**
  * Created by sivasenco on 2016-01-02.
@@ -67,54 +64,46 @@ public class BotSavesPrincess2 {
     public static final String MOVE_LEFT = "LEFT";
     public static final String MOVE_RIGHT = "RIGHT";
 
-    public static void main(String[] args) {
-        Scanner console = new Scanner(System.in);
-        Integer n = Integer.valueOf(console.nextLine());
-        String rc = console.nextLine();
-        String[] rca = rc.split("\\s");
-        Integer r = Integer.valueOf(rca[0]);
-        Integer c = Integer.valueOf(rca[1]);
-
-        char [][]grid = new char[n][n];
-
-        IntStream.range(0, n).forEach(i -> grid[i] = console.nextLine().toCharArray());
-
-        nextMove(n, r, c, grid);
-    }
-
-    public static void nextMove(Integer n, Integer r, Integer c, char[][] grid) {
-        int deltaR = 0;
-        int deltaC = 0;
-
-        boolean found = false;
-
-        for(int pr = 0; pr < n && !found; pr++) {
-            for(int pc = 0; pc < n && !found; pc++) {
-                if (grid[pr][pc] == 'p') {
-                    deltaR = r - pr;
-                    deltaC = c - pc;
-                    found = true;
+    static void nextMove(int n, int r, int c, String [] grid){
+        for(int pr = 0; pr < n; pr++) {
+            String row = grid[pr];
+            int pIndex = row.indexOf("p");
+            if (pIndex >= 0) {
+                int delta = c - pIndex;
+                if (delta != 0) {
+                    if (delta < 0) {
+                        System.out.println(MOVE_RIGHT);
+                    } else {
+                        System.out.println(MOVE_LEFT);
+                    }
+                } else {
+                    delta = r - pr;
+                    if (delta < 0) {
+                        System.out.println(MOVE_DOWN);
+                    } else if (delta > 0) {
+                        System.out.println(MOVE_UP);
+                    }
                 }
+                break;
             }
         }
+    }
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int n,r,c;
+        n = in.nextInt();
+        r = in.nextInt();
+        c = in.nextInt();
+        in.useDelimiter("\n");
+        String grid[] = new String[n];
 
-        String moveRow = MOVE_DOWN;
-        String moveCol = MOVE_RIGHT;
 
-        if (deltaR < 0) {
-            moveRow = MOVE_UP;
-            deltaR = -deltaR;
+        for(int i = 0; i < n; i++) {
+            grid[i] = in.next();
         }
-        if (deltaC < 0) {
-            moveCol = MOVE_LEFT;
-            deltaC = -deltaC;
-        }
-        for(int i = 0; i < deltaC; i++) {
-            System.out.println(moveCol);
-        }
-        for(int i = 0; i < deltaR; i++) {
-            System.out.println(moveRow);
-        }
+
+        nextMove(n,r,c,grid);
+
     }
 
 }
